@@ -1,0 +1,16 @@
+import random
+n = 10_000_000
+path = 'mixed_random_10m.txt'
+with open(path, 'w') as f:
+    f.write(f'{n}\n')
+    for i in range(n):
+        r = random.random() * 100.0
+        if r < 60.0:
+            v = random.uniform(-1.0, 1.0)
+        elif r < 70.0:
+            v = random.uniform(-10.0, 10.0)
+        elif r < 90.0:
+            v = random.uniform(-100.0, 100.0)
+        else:
+            v = random.uniform(-1000.0, 1000.0)
+        f.write(f'{v:.17g}\n')
