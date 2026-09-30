@@ -21,7 +21,7 @@ All performance benchmarks and accuracy evaluations were executed on **rtidev5**
 
 To measure numerical stability and speedup, three benchmarks of increasing structural complexity were implemented, each tested across three input complexity profiles and averaged over multiple runs:
 
-* **Array Summation (`sumArray`):** Summing large-scale `double` arrays (e.g., 10,000,000 elements).
+* **Array Summation (`sumArray`):** Summing large-scale `double` arrays (10,000,000 elements).
 * **Matrix Multiplication (`matMul`):** Double-precision matrix multiplication where accuracy is evaluated per element of the resulting matrix.
 * **Molecular Dynamics (`md`):** An N-body force and energy simulation evaluated over multiple time steps; non-associative accumulation of interaction forces across iterations causes significant multi-step rounding error propagation.
 
@@ -33,7 +33,7 @@ To measure numerical stability and speedup, three benchmarks of increasing struc
 
 ## Measured Metrics
 
-To rigorously evaluate the algorithms, the following key performance and accuracy metrics were tracked across executions:
+To evaluate the algorithms, the following key performance and accuracy metrics were tracked across executions:
 
 * **Relative Error**
 * **Global Relative Error:** - sum of absolute errors divided by the sum of absolute exact values
