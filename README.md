@@ -1,13 +1,13 @@
 # Improving-Numerical-Precision-in-Parallel-Environment-Using-Kahan-s-and-Neumaier-s-Algorithms
 
 
-# Problem Overview
+## Problem Overview
 
 Floating-point addition under the IEEE-754 standard is **non-associative** because of finite-precision rounding errors that occur at each step. In parallel environments (OpenMP), thread execution scheduling and partial sum groupings are non-deterministic, causing identical runs to produce inconsistent results.
 
 This project addresses this challenge by **implementing Kahan and Neumaier compensated summation algorithms** into multi-threaded reduction workflows to track and correct floating-point rounding errors at each iteration.
 
-# Execution Environment & Target Platform
+## Execution Environment & Target Platform
 
 All performance benchmarks and accuracy evaluations were executed on **rtidev5**, a high-performance remote development server at the School of Electrical Engineering, University of Belgrade.
 
@@ -17,7 +17,7 @@ All performance benchmarks and accuracy evaluations were executed on **rtidev5**
   gcc -fopenmp -O3 <fileName>.c -o <programName> -lm -lquadmath
 
 
-# Test Applications
+## Test Applications
 
 To measure numerical stability and speedup, three benchmarks of increasing structural complexity were implemented, each tested across three input complexity profiles and averaged over multiple runs:
 
@@ -25,13 +25,13 @@ To measure numerical stability and speedup, three benchmarks of increasing struc
 * **Matrix Multiplication (`matMul`):** Double-precision matrix multiplication where accuracy is evaluated per element of the resulting matrix.
 * **Molecular Dynamics (`md`):** An N-body force and energy simulation evaluated over multiple time steps; non-associative accumulation of interaction forces across iterations causes significant multi-step rounding error propagation.
 
-# Implementation Details
+## Implementation Details
 
 * **Precision Reference:** High-precision ground truth was computed using extended quad-precision floating-point arithmetic (`__float128` via `libquadmath`), which was subsequently rounded to `double` for direct, fair comparisons.
 * **Custom OpenMP Reductions:** Kahan and Neumaier algorithms were integrated using custom inline functions alongside OpenMP reduction operators (`#pragma omp declare reduction`) operating over a dedicated `KahanAcc` state structure.
 
 
-# Measured Metrics
+## Measured Metrics
 
 To rigorously evaluate the algorithms, the following key performance and accuracy metrics were tracked across executions:
 
